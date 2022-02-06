@@ -1,0 +1,87 @@
+---
+title: "NBI"
+output: html_notebook
+---
+
+```{r}
+library(rio)
+library(tidyverse)
+
+NBI1993= import("https://github.com/ChiaraZamoraM/NBI/raw/main/02_3A.xlsx")
+
+colnames(NBI1993)=NBI1993[4,]
+colnames(NBI1993)[c(2,6,13,15,17)]=c("Ubigeo","Hogares","Tres","Cuatro","Cinco")
+
+  
+NBI2007= import("https://github.com/ChiaraZamoraM/NBI/raw/main/02_3B.xlsx")
+
+colnames(NBI2007)=NBI2007[4,]
+colnames(NBI2007)[c(2,6,13,15,17)]=c("Ubigeo","Hogares","Tres","Cuatro","Cinco")
+
+NBI2017= import("https://github.com/ChiaraZamoraM/NBI/raw/main/02_3C.xlsx")
+
+colnames(NBI2017)=NBI2017[4,]
+colnames(NBI2017)[c(2,6,13,15,17)]=c("Ubigeo","Hogares","Tres","Cuatro","Cinco")
+```
+
+
+```{r}
+NBI1993$UbigeoProv = substr(NBI1993$Ubigeo,1,4)
+NBI2007$UbigeoProv = substr(NBI2007$Ubigeo,1,4)
+NBI2017$UbigeoProv = substr(NBI2017$Ubigeo,1,4)
+```
+
+```{r}
+subNBI1993= NBI1993[c(3:4,6,13,15,17,19)]
+
+subNBI1993[c(3:6)]=sapply(subNBI1993[c(3:6)], as.numeric)
+
+subNBI1993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI1993,  FUN = sum, na.rm = TRUE)
+```
+
+```{r}
+subNBI1993$TresOMas1993 = (subNBI1993$Tres+subNBI1993$Cuatro+subNBI1993$Cinco)/subNBI1993$Hogares*100 
+```
+
+
+```{r}
+subNBI2007= NBI2007[c(3:4,6,13,15,17,19)]
+
+subNBI2007[c(3:6)]=sapply(subNBI2007[c(3:6)], as.numeric)
+
+subNBI2007= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI2007,  FUN = sum, na.rm = TRUE)
+```
+
+```{r}
+subNBI2007$TresOMas2007 = (subNBI2007$Tres+subNBI2007$Cuatro+subNBI2007$Cinco)/subNBI2007$Hogares*100 
+```
+
+```{r}
+subNBI2017= NBI2017[c(3:4,6,13,15,17,19)]
+
+subNBI2017[c(3:6)]=sapply(subNBI2017[c(3:6)], as.numeric)
+
+subNBI2017= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI2017,  FUN = sum, na.rm = TRUE)
+```
+
+```{r}
+subNBI2017$TresOMas2017 = (subNBI2017$Tres+subNBI2017$Cuatro+subNBI2017$Cinco)/subNBI2017$Hogares*100
+
+```
+
+```{r}
+subNBI1993=subNBI1993[,c(1,6)]
+subNBI2007=subNBI2007[,c(1,6)]
+subNBI2017=subNBI2017[,c(1,6)]
+```
+
+
+```{r}
+NBI = Reduce(function(x, y) merge(x, y, by=c("UbigeoProv"), all=TRUE), list(subNBI1993, subNBI2007, subNBI2017))
+```
+
+```{r}
+saveRDS(NBI,"NBI.RDS")
+```
+
+
