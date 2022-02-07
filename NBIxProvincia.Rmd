@@ -6,6 +6,8 @@ output: html_notebook
 ```{r}
 library(rio)
 library(tidyverse)
+library(magrittr)
+library(tibble)
 
 NBI1993= import("https://github.com/ChiaraZamoraM/NBI/raw/main/02_3A.xlsx")
 
@@ -36,6 +38,8 @@ subNBI1993= NBI1993[c(3:4,6,13,15,17,19)]
 
 subNBI1993[c(3:6)]=sapply(subNBI1993[c(3:6)], as.numeric)
 
+subNBI21993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv+Departamento+Provincia, data= subNBI1993,  FUN = sum, na.rm = TRUE)
+
 subNBI1993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI1993,  FUN = sum, na.rm = TRUE)
 ```
 
@@ -43,13 +47,12 @@ subNBI1993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= s
 subNBI1993$TresOMas1993 = (subNBI1993$Tres+subNBI1993$Cuatro+subNBI1993$Cinco)/subNBI1993$Hogares*100 
 ```
 
-
 ```{r}
 subNBI2007= NBI2007[c(3:4,6,13,15,17,19)]
 
 subNBI2007[c(3:6)]=sapply(subNBI2007[c(3:6)], as.numeric)
 
-subNBI2007= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI2007,  FUN = sum, na.rm = TRUE)
+subNBI2007= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv , data= subNBI2007,  FUN = sum, na.rm = TRUE)
 ```
 
 ```{r}
@@ -77,11 +80,59 @@ subNBI2017=subNBI2017[,c(1,6)]
 
 
 ```{r}
-NBI = Reduce(function(x, y) merge(x, y, by=c("UbigeoProv"), all=TRUE), list(subNBI1993, subNBI2007, subNBI2017))
+library(stringi)
+
+NBI1981= import("https://github.com/ChiaraZamoraM/NBI/raw/main/NBI_1981.xlsx")
+subNBI1981=NBI1981[,c(2,3,10:13)]
+colnames(subNBI1981)=c("Provincia","Departamento","TresP","Tres","CuatroP","Cuatro")
+subNBI1981[c(3:6)]=sapply(subNBI1981[c(3:6)], as.numeric)
+
+subNBI1981$TresOMas1981=subNBI1981$TresP+subNBI1981$CuatroP
+
+subNBI1981=subNBI1981[,c(1,2,7)]
+
+subNBI1981 <- subNBI1981[!is.na(subNBI1981$Departamento), ]
+subNBI1981 <- subNBI1981[!is.na(subNBI1981$Provincia), ]
+subNBI1981 <- subNBI1981[!is.na(subNBI1981$TresOMas1981), ]
+
+subNBI1981[subNBI1981$Provincia=="CARLOS F. FITZCARR",]$Provincia="CARLOS F. FITZCARRALD"
+subNBI1981[subNBI1981$Provincia=="MARISCAL LUZURRIAG",]$Provincia="MARISCAL LUZURRIAGA"
+subNBI1981[subNBI1981$Provincia=="PAUCAR DEL SARA SA",]$Provincia="PAUCAR DEL SARA SARA"	
+subNBI1981[subNBI1981$Provincia=="DANIEL ALCIDES CAR",]$Provincia="DANIEL ALCIDES CARRION"
+subNBI1981[subNBI1981$Provincia=="MARISCAL RAMON CAS",]$Provincia="MARISCAL RAMON CASTILLA"
+subNBI1981[subNBI1981$Provincia=="GRAL. SANCHEZ CERR",]$Provincia="GRAL. SANCHEZ CERRO"
+subNBI1981[subNBI1981$Provincia=="SAN ANTONIO DE PUT",]$Provincia="SAN ANTONIO DE PUTINA"
+subNBI1981[subNBI1981$Provincia=="CONTRALMIRANTE VIL",]$Provincia="CONTRALMIRANTE VILLAR"
+subNBI1981[subNBI1981$Provincia=="RODRIGUEZ DE MENDO",]$Provincia="RODRIGUEZ DE MENDOZA"
+subNBI1981[subNBI1981$Provincia=="VILCA HUAMAN",]$Provincia="VILCASHUAMAN"
+
+subNBI1981[subNBI1981$Departamento=="ALD ANCASH"|subNBI1981$Departamento=="A   ANCASH",]$Departamento="ANCASH"
+subNBI1981[subNBI1981$Departamento=="RA  AYACUCHO",]$Departamento="AYACUCHO"
+subNBI1981[subNBI1981$Departamento=="RIO PASCO",]$Departamento="PASCO"
+subNBI1981[subNBI1981$Departamento=="TIL LORETO",]$Departamento="LORETO"
+subNBI1981[subNBI1981$Departamento=="O   MOQUEGUA",]$Departamento="MOQUEGUA"
+subNBI1981[subNBI1981$Departamento=="INA PUNO",]$Departamento="PUNO"
+subNBI1981[subNBI1981$Departamento=="LAR TUMBES",]$Departamento="TUMBES"
+
+subNBI21993$Departamento= stri_trans_general(str = toupper(subNBI21993$Departamento), id = "Latin-ASCII")
+
+subNBI21993$Provincia= stri_trans_general(str = toupper(subNBI21993$Provincia), id = "Latin-ASCII")
+subNBI21993[subNBI21993$Provincia=="MARA¥ON",]$Provincia="MARANON"
+subNBI21993[subNBI21993$Provincia=="FERRE¥AFE",]$Provincia="FERRENAFE"
+subNBI21993[subNBI21993$Provincia=="CA¥ETE",]$Provincia="CANETE"
+subNBI21993[subNBI21993$Provincia=="QUISPICANCHIS",]$Provincia="QUISPICANCHI"
+
+```
+
+```{r}
+Prueba = merge(subNBI1981,subNBI21993, by=c("Departamento","Provincia"), all = TRUE)
+Prueba1981 = Prueba[,c(1:4)]
+```
+
+```{r}
+NBI = Reduce(function(x, y) merge(x, y, by=c("UbigeoProv"), all=TRUE), list(Prueba1981,subNBI1993, subNBI2007, subNBI2017))
 ```
 
 ```{r}
 saveRDS(NBI,"NBI.RDS")
 ```
-
-

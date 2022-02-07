@@ -250,19 +250,14 @@ NBI2017$UbigeoProv = substr(NBI2017$Ubigeo,1,4)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMTk5Mz0gTkJJMTk5M1tjKDM6NCw2LDEzLDE1LDE3LDE5KV1cblxuc3ViTkJJMTk5M1tjKDM6NildPXNhcHBseShzdWJOQkkxOTkzW2MoMzo2KV0sIGFzLm51bWVyaWMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMTk5Mz0gTkJJMTk5M1tjKDM6NCw2LDEzLDE1LDE3LDE5KV1cblxuc3ViTkJJMTk5M1tjKDM6NildPXNhcHBseShzdWJOQkkxOTkzW2MoMzo2KV0sIGFzLm51bWVyaWMpXG5cbnN1Yk5CSTIxOTkzID0gYWdncmVnYXRlKGNiaW5kKEhvZ2FyZXMsIFRyZXMsIEN1YXRybywgQ2luY28pIH4gVWJpZ2VvUHJvditEZXBhcnRhbWVudG8rUHJvdmluY2lhLCBkYXRhPSBzdWJOQkkxOTkzLCAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpXG5cbnN1Yk5CSTE5OTMgPSBhZ2dyZWdhdGUoY2JpbmQoSG9nYXJlcywgVHJlcywgQ3VhdHJvLCBDaW5jbykgfiBVYmlnZW9Qcm92LCBkYXRhPSBzdWJOQkkxOTkzLCAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpXG5gYGAifQ== -->
 <pre class="r"><code>subNBI1993= NBI1993[c(3:4,6,13,15,17,19)]
 
-subNBI1993[c(3:6)]=sapply(subNBI1993[c(3:6)], as.numeric)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBsYXBwbHkoWCA9IFgsIEZVTiA9IEZVTiwgLi4uKSA6IE5BcyBpbnRyb2R1Y2VkIGJ5IGNvZXJjaW9uXG5XYXJuaW5nIGluIGxhcHBseShYID0gWCwgRlVOID0gRlVOLCAuLi4pIDogTkFzIGludHJvZHVjZWQgYnkgY29lcmNpb25cbldhcm5pbmcgaW4gbGFwcGx5KFggPSBYLCBGVU4gPSBGVU4sIC4uLikgOiBOQXMgaW50cm9kdWNlZCBieSBjb2VyY2lvblxuV2FybmluZyBpbiBsYXBwbHkoWCA9IFgsIEZVTiA9IEZVTiwgLi4uKSA6IE5BcyBpbnRyb2R1Y2VkIGJ5IGNvZXJjaW9uXG4ifQ== -->
-<pre><code>Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMTk5MyA9IGFnZ3JlZ2F0ZShjYmluZChIb2dhcmVzLCBUcmVzLCBDdWF0cm8sIENpbmNvKSB+IFViaWdlb1Byb3YsIGRhdGE9IHN1Yk5CSTE5OTMsICBGVU4gPSBzdW0sIG5hLnJtID0gVFJVRSlcbmBgYCJ9 -->
-<pre class="r"><code>subNBI1993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI1993,  FUN = sum, na.rm = TRUE)</code></pre>
+subNBI1993[c(3:6)]=sapply(subNBI1993[c(3:6)], as.numeric)
+
+subNBI21993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv+Departamento+Provincia, data= subNBI1993,  FUN = sum, na.rm = TRUE)
+
+subNBI1993 = aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI1993,  FUN = sum, na.rm = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -275,19 +270,12 @@ Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion</code></pr
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMjAwNz0gTkJJMjAwN1tjKDM6NCw2LDEzLDE1LDE3LDE5KV1cblxuc3ViTkJJMjAwN1tjKDM6NildPXNhcHBseShzdWJOQkkyMDA3W2MoMzo2KV0sIGFzLm51bWVyaWMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMjAwNz0gTkJJMjAwN1tjKDM6NCw2LDEzLDE1LDE3LDE5KV1cblxuc3ViTkJJMjAwN1tjKDM6NildPXNhcHBseShzdWJOQkkyMDA3W2MoMzo2KV0sIGFzLm51bWVyaWMpXG5cbnN1Yk5CSTIwMDc9IGFnZ3JlZ2F0ZShjYmluZChIb2dhcmVzLCBUcmVzLCBDdWF0cm8sIENpbmNvKSB+IFViaWdlb1Byb3YgLCBkYXRhPSBzdWJOQkkyMDA3LCAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpXG5gYGAifQ== -->
 <pre class="r"><code>subNBI2007= NBI2007[c(3:4,6,13,15,17,19)]
 
-subNBI2007[c(3:6)]=sapply(subNBI2007[c(3:6)], as.numeric)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBsYXBwbHkoWCA9IFgsIEZVTiA9IEZVTiwgLi4uKSA6IE5BcyBpbnRyb2R1Y2VkIGJ5IGNvZXJjaW9uXG5XYXJuaW5nIGluIGxhcHBseShYID0gWCwgRlVOID0gRlVOLCAuLi4pIDogTkFzIGludHJvZHVjZWQgYnkgY29lcmNpb25cbldhcm5pbmcgaW4gbGFwcGx5KFggPSBYLCBGVU4gPSBGVU4sIC4uLikgOiBOQXMgaW50cm9kdWNlZCBieSBjb2VyY2lvblxuV2FybmluZyBpbiBsYXBwbHkoWCA9IFgsIEZVTiA9IEZVTiwgLi4uKSA6IE5BcyBpbnRyb2R1Y2VkIGJ5IGNvZXJjaW9uXG4ifQ== -->
-<pre><code>Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMjAwNz0gYWdncmVnYXRlKGNiaW5kKEhvZ2FyZXMsIFRyZXMsIEN1YXRybywgQ2luY28pIH4gVWJpZ2VvUHJvdiwgZGF0YT0gc3ViTkJJMjAwNywgIEZVTiA9IHN1bSwgbmEucm0gPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>subNBI2007= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI2007,  FUN = sum, na.rm = TRUE)</code></pre>
+subNBI2007[c(3:6)]=sapply(subNBI2007[c(3:6)], as.numeric)
+
+subNBI2007= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv , data= subNBI2007,  FUN = sum, na.rm = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -300,19 +288,12 @@ Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion</code></pr
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMjAxNz0gTkJJMjAxN1tjKDM6NCw2LDEzLDE1LDE3LDE5KV1cblxuc3ViTkJJMjAxN1tjKDM6NildPXNhcHBseShzdWJOQkkyMDE3W2MoMzo2KV0sIGFzLm51bWVyaWMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMjAxNz0gTkJJMjAxN1tjKDM6NCw2LDEzLDE1LDE3LDE5KV1cblxuc3ViTkJJMjAxN1tjKDM6NildPXNhcHBseShzdWJOQkkyMDE3W2MoMzo2KV0sIGFzLm51bWVyaWMpXG5cbnN1Yk5CSTIwMTc9IGFnZ3JlZ2F0ZShjYmluZChIb2dhcmVzLCBUcmVzLCBDdWF0cm8sIENpbmNvKSB+IFViaWdlb1Byb3YsIGRhdGE9IHN1Yk5CSTIwMTcsICBGVU4gPSBzdW0sIG5hLnJtID0gVFJVRSlcbmBgYCJ9 -->
 <pre class="r"><code>subNBI2017= NBI2017[c(3:4,6,13,15,17,19)]
 
-subNBI2017[c(3:6)]=sapply(subNBI2017[c(3:6)], as.numeric)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBsYXBwbHkoWCA9IFgsIEZVTiA9IEZVTiwgLi4uKSA6IE5BcyBpbnRyb2R1Y2VkIGJ5IGNvZXJjaW9uXG5XYXJuaW5nIGluIGxhcHBseShYID0gWCwgRlVOID0gRlVOLCAuLi4pIDogTkFzIGludHJvZHVjZWQgYnkgY29lcmNpb25cbldhcm5pbmcgaW4gbGFwcGx5KFggPSBYLCBGVU4gPSBGVU4sIC4uLikgOiBOQXMgaW50cm9kdWNlZCBieSBjb2VyY2lvblxuV2FybmluZyBpbiBsYXBwbHkoWCA9IFgsIEZVTiA9IEZVTiwgLi4uKSA6IE5BcyBpbnRyb2R1Y2VkIGJ5IGNvZXJjaW9uXG4ifQ== -->
-<pre><code>Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion
-Warning in lapply(X = X, FUN = FUN, ...) : NAs introduced by coercion</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3ViTkJJMjAxNz0gYWdncmVnYXRlKGNiaW5kKEhvZ2FyZXMsIFRyZXMsIEN1YXRybywgQ2luY28pIH4gVWJpZ2VvUHJvdiwgZGF0YT0gc3ViTkJJMjAxNywgIEZVTiA9IHN1bSwgbmEucm0gPSBUUlVFKVxuYGBgIn0= -->
-<pre class="r"><code>subNBI2017= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI2017,  FUN = sum, na.rm = TRUE)</code></pre>
+subNBI2017[c(3:6)]=sapply(subNBI2017[c(3:6)], as.numeric)
+
+subNBI2017= aggregate(cbind(Hogares, Tres, Cuatro, Cinco) ~ UbigeoProv, data= subNBI2017,  FUN = sum, na.rm = TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -348,8 +329,19 @@ subNBI2017=subNBI2017[,c(1,6)]</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUHJ1ZWJhID0gbWVyZ2Uoc3ViTkJJMTk4MSxzdWJOQkkyMTk5MywgYnk9YyhcIkRlcGFydGFtZW50b1wiLFwiUHJvdmluY2lhXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>Prueba = merge(subNBI1981,subNBI21993, by=c(&quot;Departamento&quot;,&quot;Provincia&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk5CSSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeShyaW8pDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCg0KTkJJMTk5Mz0gaW1wb3J0KCJodHRwczovL2dpdGh1Yi5jb20vQ2hpYXJhWmFtb3JhTS9OQkkvcmF3L21haW4vMDJfM0EueGxzeCIpDQoNCmNvbG5hbWVzKE5CSTE5OTMpPU5CSTE5OTNbNCxdDQpjb2xuYW1lcyhOQkkxOTkzKVtjKDIsNiwxMywxNSwxNyldPWMoIlViaWdlbyIsIkhvZ2FyZXMiLCJUcmVzIiwiQ3VhdHJvIiwiQ2luY28iKQ0KDQogIA0KTkJJMjAwNz0gaW1wb3J0KCJodHRwczovL2dpdGh1Yi5jb20vQ2hpYXJhWmFtb3JhTS9OQkkvcmF3L21haW4vMDJfM0IueGxzeCIpDQoNCmNvbG5hbWVzKE5CSTIwMDcpPU5CSTIwMDdbNCxdDQpjb2xuYW1lcyhOQkkyMDA3KVtjKDIsNiwxMywxNSwxNyldPWMoIlViaWdlbyIsIkhvZ2FyZXMiLCJUcmVzIiwiQ3VhdHJvIiwiQ2luY28iKQ0KDQpOQkkyMDE3PSBpbXBvcnQoImh0dHBzOi8vZ2l0aHViLmNvbS9DaGlhcmFaYW1vcmFNL05CSS9yYXcvbWFpbi8wMl8zQy54bHN4IikNCg0KY29sbmFtZXMoTkJJMjAxNyk9TkJJMjAxN1s0LF0NCmNvbG5hbWVzKE5CSTIwMTcpW2MoMiw2LDEzLDE1LDE3KV09YygiVWJpZ2VvIiwiSG9nYXJlcyIsIlRyZXMiLCJDdWF0cm8iLCJDaW5jbyIpDQpgYGANCg0KDQpgYGB7cn0NCk5CSTE5OTMkVWJpZ2VvUHJvdiA9IHN1YnN0cihOQkkxOTkzJFViaWdlbywxLDQpDQpOQkkyMDA3JFViaWdlb1Byb3YgPSBzdWJzdHIoTkJJMjAwNyRVYmlnZW8sMSw0KQ0KTkJJMjAxNyRVYmlnZW9Qcm92ID0gc3Vic3RyKE5CSTIwMTckVWJpZ2VvLDEsNCkNCmBgYA0KDQpgYGB7cn0NCnN1Yk5CSTE5OTM9IE5CSTE5OTNbYygzOjQsNiwxMywxNSwxNywxOSldDQoNCnN1Yk5CSTE5OTNbYygzOjYpXT1zYXBwbHkoc3ViTkJJMTk5M1tjKDM6NildLCBhcy5udW1lcmljKQ0KDQpzdWJOQkkxOTkzID0gYWdncmVnYXRlKGNiaW5kKEhvZ2FyZXMsIFRyZXMsIEN1YXRybywgQ2luY28pIH4gVWJpZ2VvUHJvdiwgZGF0YT0gc3ViTkJJMTk5MywgIEZVTiA9IHN1bSwgbmEucm0gPSBUUlVFKQ0KYGBgDQoNCmBgYHtyfQ0Kc3ViTkJJMTk5MyRUcmVzT01hczE5OTMgPSAoc3ViTkJJMTk5MyRUcmVzK3N1Yk5CSTE5OTMkQ3VhdHJvK3N1Yk5CSTE5OTMkQ2luY28pL3N1Yk5CSTE5OTMkSG9nYXJlcyoxMDAgDQpgYGANCg0KDQpgYGB7cn0NCnN1Yk5CSTIwMDc9IE5CSTIwMDdbYygzOjQsNiwxMywxNSwxNywxOSldDQoNCnN1Yk5CSTIwMDdbYygzOjYpXT1zYXBwbHkoc3ViTkJJMjAwN1tjKDM6NildLCBhcy5udW1lcmljKQ0KDQpzdWJOQkkyMDA3PSBhZ2dyZWdhdGUoY2JpbmQoSG9nYXJlcywgVHJlcywgQ3VhdHJvLCBDaW5jbykgfiBVYmlnZW9Qcm92LCBkYXRhPSBzdWJOQkkyMDA3LCAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpDQpgYGANCg0KYGBge3J9DQpzdWJOQkkyMDA3JFRyZXNPTWFzMjAwNyA9IChzdWJOQkkyMDA3JFRyZXMrc3ViTkJJMjAwNyRDdWF0cm8rc3ViTkJJMjAwNyRDaW5jbykvc3ViTkJJMjAwNyRIb2dhcmVzKjEwMCANCmBgYA0KDQpgYGB7cn0NCnN1Yk5CSTIwMTc9IE5CSTIwMTdbYygzOjQsNiwxMywxNSwxNywxOSldDQoNCnN1Yk5CSTIwMTdbYygzOjYpXT1zYXBwbHkoc3ViTkJJMjAxN1tjKDM6NildLCBhcy5udW1lcmljKQ0KDQpzdWJOQkkyMDE3PSBhZ2dyZWdhdGUoY2JpbmQoSG9nYXJlcywgVHJlcywgQ3VhdHJvLCBDaW5jbykgfiBVYmlnZW9Qcm92LCBkYXRhPSBzdWJOQkkyMDE3LCAgRlVOID0gc3VtLCBuYS5ybSA9IFRSVUUpDQpgYGANCg0KYGBge3J9DQpzdWJOQkkyMDE3JFRyZXNPTWFzMjAxNyA9IChzdWJOQkkyMDE3JFRyZXMrc3ViTkJJMjAxNyRDdWF0cm8rc3ViTkJJMjAxNyRDaW5jbykvc3ViTkJJMjAxNyRIb2dhcmVzKjEwMA0KDQpgYGANCg0KYGBge3J9DQpzdWJOQkkxOTkzPXN1Yk5CSTE5OTNbLGMoMSw2KV0NCnN1Yk5CSTIwMDc9c3ViTkJJMjAwN1ssYygxLDYpXQ0Kc3ViTkJJMjAxNz1zdWJOQkkyMDE3WyxjKDEsNildDQpgYGANCg0KDQpgYGB7cn0NCk5CSSA9IFJlZHVjZShmdW5jdGlvbih4LCB5KSBtZXJnZSh4LCB5LCBieT1jKCJVYmlnZW9Qcm92IiksIGFsbD1UUlVFKSwgbGlzdChzdWJOQkkxOTkzLCBzdWJOQkkyMDA3LCBzdWJOQkkyMDE3KSkNCmBgYA0KDQpgYGB7cn0NCnNhdmVSRFMoTkJJLCJOQkkuUkRTIikNCmBgYA0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk5CSSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeShyaW8pDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCg0KTkJJMTk5Mz0gaW1wb3J0KCJodHRwczovL2dpdGh1Yi5jb20vQ2hpYXJhWmFtb3JhTS9OQkkvcmF3L21haW4vMDJfM0EueGxzeCIpDQoNCmNvbG5hbWVzKE5CSTE5OTMpPU5CSTE5OTNbNCxdDQpjb2xuYW1lcyhOQkkxOTkzKVtjKDIsNiwxMywxNSwxNyldPWMoIlViaWdlbyIsIkhvZ2FyZXMiLCJUcmVzIiwiQ3VhdHJvIiwiQ2luY28iKQ0KDQogIA0KTkJJMjAwNz0gaW1wb3J0KCJodHRwczovL2dpdGh1Yi5jb20vQ2hpYXJhWmFtb3JhTS9OQkkvcmF3L21haW4vMDJfM0IueGxzeCIpDQoNCmNvbG5hbWVzKE5CSTIwMDcpPU5CSTIwMDdbNCxdDQpjb2xuYW1lcyhOQkkyMDA3KVtjKDIsNiwxMywxNSwxNyldPWMoIlViaWdlbyIsIkhvZ2FyZXMiLCJUcmVzIiwiQ3VhdHJvIiwiQ2luY28iKQ0KDQpOQkkyMDE3PSBpbXBvcnQoImh0dHBzOi8vZ2l0aHViLmNvbS9DaGlhcmFaYW1vcmFNL05CSS9yYXcvbWFpbi8wMl8zQy54bHN4IikNCg0KY29sbmFtZXMoTkJJMjAxNyk9TkJJMjAxN1s0LF0NCmNvbG5hbWVzKE5CSTIwMTcpW2MoMiw2LDEzLDE1LDE3KV09YygiVWJpZ2VvIiwiSG9nYXJlcyIsIlRyZXMiLCJDdWF0cm8iLCJDaW5jbyIpDQpgYGANCg0KDQpgYGB7cn0NCk5CSTE5OTMkVWJpZ2VvUHJvdiA9IHN1YnN0cihOQkkxOTkzJFViaWdlbywxLDQpDQpOQkkyMDA3JFViaWdlb1Byb3YgPSBzdWJzdHIoTkJJMjAwNyRVYmlnZW8sMSw0KQ0KTkJJMjAxNyRVYmlnZW9Qcm92ID0gc3Vic3RyKE5CSTIwMTckVWJpZ2VvLDEsNCkNCmBgYA0KDQpgYGB7cn0NCnN1Yk5CSTE5OTM9IE5CSTE5OTNbYygzOjQsNiwxMywxNSwxNywxOSldDQoNCnN1Yk5CSTE5OTNbYygzOjYpXT1zYXBwbHkoc3ViTkJJMTk5M1tjKDM6NildLCBhcy5udW1lcmljKQ0KDQpzdWJOQkkyMTk5MyA9IGFnZ3JlZ2F0ZShjYmluZChIb2dhcmVzLCBUcmVzLCBDdWF0cm8sIENpbmNvKSB+IFViaWdlb1Byb3YrRGVwYXJ0YW1lbnRvK1Byb3ZpbmNpYSwgZGF0YT0gc3ViTkJJMTk5MywgIEZVTiA9IHN1bSwgbmEucm0gPSBUUlVFKQ0KDQpzdWJOQkkxOTkzID0gYWdncmVnYXRlKGNiaW5kKEhvZ2FyZXMsIFRyZXMsIEN1YXRybywgQ2luY28pIH4gVWJpZ2VvUHJvdiwgZGF0YT0gc3ViTkJJMTk5MywgIEZVTiA9IHN1bSwgbmEucm0gPSBUUlVFKQ0KYGBgDQoNCmBgYHtyfQ0Kc3ViTkJJMTk5MyRUcmVzT01hczE5OTMgPSAoc3ViTkJJMTk5MyRUcmVzK3N1Yk5CSTE5OTMkQ3VhdHJvK3N1Yk5CSTE5OTMkQ2luY28pL3N1Yk5CSTE5OTMkSG9nYXJlcyoxMDAgDQpgYGANCg0KYGBge3J9DQpzdWJOQkkyMDA3PSBOQkkyMDA3W2MoMzo0LDYsMTMsMTUsMTcsMTkpXQ0KDQpzdWJOQkkyMDA3W2MoMzo2KV09c2FwcGx5KHN1Yk5CSTIwMDdbYygzOjYpXSwgYXMubnVtZXJpYykNCg0Kc3ViTkJJMjAwNz0gYWdncmVnYXRlKGNiaW5kKEhvZ2FyZXMsIFRyZXMsIEN1YXRybywgQ2luY28pIH4gVWJpZ2VvUHJvdiAsIGRhdGE9IHN1Yk5CSTIwMDcsICBGVU4gPSBzdW0sIG5hLnJtID0gVFJVRSkNCmBgYA0KDQpgYGB7cn0NCnN1Yk5CSTIwMDckVHJlc09NYXMyMDA3ID0gKHN1Yk5CSTIwMDckVHJlcytzdWJOQkkyMDA3JEN1YXRybytzdWJOQkkyMDA3JENpbmNvKS9zdWJOQkkyMDA3JEhvZ2FyZXMqMTAwIA0KYGBgDQoNCmBgYHtyfQ0Kc3ViTkJJMjAxNz0gTkJJMjAxN1tjKDM6NCw2LDEzLDE1LDE3LDE5KV0NCg0Kc3ViTkJJMjAxN1tjKDM6NildPXNhcHBseShzdWJOQkkyMDE3W2MoMzo2KV0sIGFzLm51bWVyaWMpDQoNCnN1Yk5CSTIwMTc9IGFnZ3JlZ2F0ZShjYmluZChIb2dhcmVzLCBUcmVzLCBDdWF0cm8sIENpbmNvKSB+IFViaWdlb1Byb3YsIGRhdGE9IHN1Yk5CSTIwMTcsICBGVU4gPSBzdW0sIG5hLnJtID0gVFJVRSkNCmBgYA0KDQpgYGB7cn0NCnN1Yk5CSTIwMTckVHJlc09NYXMyMDE3ID0gKHN1Yk5CSTIwMTckVHJlcytzdWJOQkkyMDE3JEN1YXRybytzdWJOQkkyMDE3JENpbmNvKS9zdWJOQkkyMDE3JEhvZ2FyZXMqMTAwDQoNCmBgYA0KDQpgYGB7cn0NCnN1Yk5CSTE5OTM9c3ViTkJJMTk5M1ssYygxLDYpXQ0Kc3ViTkJJMjAwNz1zdWJOQkkyMDA3WyxjKDEsNildDQpzdWJOQkkyMDE3PXN1Yk5CSTIwMTdbLGMoMSw2KV0NCmBgYA0KDQoNCmBgYHtyfQ0KTkJJID0gUmVkdWNlKGZ1bmN0aW9uKHgsIHkpIG1lcmdlKHgsIHksIGJ5PWMoIlViaWdlb1Byb3YiKSwgYWxsPVRSVUUpLCBsaXN0KHN1Yk5CSTE5OTMsIHN1Yk5CSTIwMDcsIHN1Yk5CSTIwMTcpKQ0KYGBgDQoNCmBgYHtyfQ0Kc2F2ZVJEUyhOQkksIk5CSS5SRFMiKQ0KYGBgDQoNCmBgYHtyfQ0KbGlicmFyeShzdHJpbmdpKQ0KDQpOQkkxOTgxPSBpbXBvcnQoImh0dHBzOi8vZ2l0aHViLmNvbS9DaGlhcmFaYW1vcmFNL05CSS9yYXcvbWFpbi9OQklfMTk4MS54bHN4IikNCnN1Yk5CSTE5ODE9TkJJMTk4MVssYygyLDMsODoxMyldDQpjb2xuYW1lcyhzdWJOQkkxOTgxKT1jKCJQcm92aW5jaWEiLCJEZXBhcnRhbWVudG8iLCJUcmVzUCIsIlRyZXMiLCJDdWF0cm9QIiwiQ3VhdHJvIiwiQ2luY29QIiwiQ2luY28iKQ0Kc3ViTkJJMTk4MVtjKDM6OCldPXNhcHBseShzdWJOQkkxOTgxW2MoMzo4KV0sIGFzLm51bWVyaWMpDQoNCnN1Yk5CSTE5ODEkVHJlc09NYXMxOTgxPXN1Yk5CSTE5ODEkVHJlc1Arc3ViTkJJMTk4MSRDdWF0cm9QK3N1Yk5CSTE5ODEkQ2luY29QDQoNCnN1Yk5CSTE5ODE9c3ViTkJJMTk4MVssYygxLDIsOSldDQoNCnN1Yk5CSTE5ODEgPC0gc3ViTkJJMTk4MVshaXMubmEoc3ViTkJJMTk4MSREZXBhcnRhbWVudG8pLCBdDQoNCnN1Yk5CSTE5ODFbc3ViTkJJMTk4MSRQcm92aW5jaWE9PSIiLCJDQVJMT1MgRi4gRklUWkNBUlIiXT0iQ0FSTE9TIEYuIEZJVFpDQVJSQUxEIg0Kc3ViTkJJMTk4MVtzdWJOQkkxOTgxJFByb3ZpbmNpYT09IiIsIkNBUkxPUyBGLiBGSVRaQ0FSUiJdPSJDQVJMT1MgRi4gRklUWkNBUlJBTEQiDQpzdWJOQkkxOTgxW3N1Yk5CSTE5ODEkRElTVFJJVE89PSJDT1JPTkVMIEdSRUdPUklPIEFMQkFSUkFDSU4gTC4iLCJESVNUUklUTyJdPSJDUk5FTC5HUkVHT1JJTyBBTEJBUlJBQ0lOIExBTkNISVBBIg0KDQpzdWJOQkkyMTk5MyREZXBhcnRhbWVudG89IHN0cmlfdHJhbnNfZ2VuZXJhbChzdHIgPSB0b3VwcGVyKHN1Yk5CSTIxOTkzJERlcGFydGFtZW50byksIGlkID0gIkxhdGluLUFTQ0lJIikNCg0Kc3ViTkJJMjE5OTMkUHJvdmluY2lhPSBzdHJpX3RyYW5zX2dlbmVyYWwoc3RyID0gdG91cHBlcihzdWJOQkkyMTk5MyRQcm92aW5jaWEpLCBpZCA9ICJMYXRpbi1BU0NJSSIpDQpgYGANCg0KDQpgYGB7cn0NClBydWViYSA9IG1lcmdlKHN1Yk5CSTE5ODEsc3ViTkJJMjE5OTMsIGJ5PWMoIkRlcGFydGFtZW50byIsIlByb3ZpbmNpYSIpKQ0KDQpgYGANCg0K</div>
 
 
 
